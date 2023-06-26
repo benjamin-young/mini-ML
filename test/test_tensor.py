@@ -13,5 +13,13 @@ class TestTensor(unittest.TestCase):
         print(t3.values)
         np.testing.assert_array_equal(t3.values, expected_result)
 
+    def test_tensor_add(self):
+        t1 = Tensor(np.array([[1,2],[3,4]]))
+        t2 = Tensor(np.array([[5,6],[7,8]]))
+        expected_result = np.array([[6, 8], [10, 12]])
+        t3 = t1 * t2
+        print(t3.values)
+        np.testing.assert_array_equal(t3.values, expected_result)
+
 if __name__ == '__main__':
     unittest.main()
