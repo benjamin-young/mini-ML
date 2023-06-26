@@ -1,2 +1,4 @@
 env/
 engine/__pycache__
+.vscode/
+test/__pycache__
