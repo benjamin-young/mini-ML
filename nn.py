@@ -45,37 +45,6 @@ targets = np.random.randn(100, 1)  # 100 samples, 1 target value each
 
 dataset = list(zip(inputs, targets)) # makes iterateable 
 
-#input = Tensor(inputs[0].reshape(-1, 1).T)
-#target = Tensor(targets[0].reshape(-1, 1))
-'''
-output = nn.forward(input)
-
-print("target:")
-print(target.values)
-
-print("loss:")
-#takes two tensors as input 
-loss = mse.forward(output,target)
-print(loss)
-
-print("gradient:")
-gradient = mse.backward()
-print(gradient)
-print(gradient.shape)
-
-print("backward stage")
-nn.backward(gradient)
-
-#print("layer 1 grads:")
-#print(nn.layer1.weights.grads)
-
-print("sgd stage:")
-
-print("bias shape")
-print(nn.layer1.biases.shape())
-sgd.step()
-
-'''
 for epoch in range(3):  # 100 epochs
     print(epoch)
     for input, target in dataset:               # dataset is an iterable of (input, target) pairs

@@ -47,14 +47,6 @@ for epoch in range(200):  # 100 epochs
         gradient = mse.backward()               # calculates gradient by performing backprop - input is the gradient of the loss func
         #print(prediction.creator_op + " " + str(prediction.creators))
         nn.backward(gradient)                   # performs backprop on neural network - input is the gradient of the loss wrt the networks output (descending to low loss)
-        '''
-        print(input)
-        print(target.values)
-        print(prediction.values)
-        print("loss: " + str(loss))    
-        print("weight: "+ str(nn.layer1.weights.values))
-        print("bias: "+ str(nn.layer1.biases.values))
-        '''
         sgd.step()                              # updates the network parameters using the gradients calculated in backprop
 
 print("Done")
