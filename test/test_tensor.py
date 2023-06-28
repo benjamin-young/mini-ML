@@ -3,7 +3,6 @@ from engine.shapes import Tensor
 
 import numpy as np
 
-
 class TestTensor(unittest.TestCase):
     def test_tensor_mul(self):
         t1 = Tensor(np.array([[1,2],[3,4]]))

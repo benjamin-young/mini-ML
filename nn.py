@@ -16,15 +16,11 @@ class NeuralNetwork:
 
     def backward(self, grad):
         layer2Grad = self.layer2.backward(grad)
-        #print("layer2 gradients: " + str(layer2Grad))
         layer1Grad = self.layer1.backward(layer2Grad)
-        #print("layer1 gradients: " + str(layer1Grad))
 
-    # add the following to your NeuralNetwork class
     def parameters(self):
         return [self.layer1.weights, self.layer1.biases, self.layer2.weights, self.layer2.biases]
 
-# example of a training loop
 nn = NeuralNetwork(10, 20, 1)
 mse = MSE()
 sgd = SGD(nn.parameters())
@@ -55,10 +51,8 @@ for epoch in range(3):  # 100 epochs
         prediction = nn.forward(inputTensor)    # performs a forward pass on the neural network
         loss = mse.forward(prediction, target)  # calculates loss on the prediction using MSE function
         gradient = mse.backward()               # calculates gradient by performing backprop - input is the gradient of the loss func
-        #print(prediction.creator_op + " " + str(prediction.creators))
         nn.backward(gradient)                   # performs backprop on neural network - input is the gradient of the loss wrt the networks output (descending to low loss)
-        print("loss: " + str(loss))
-        
+        print("loss: " + str(loss))        
         sgd.step()                              # updates the network parameters using the gradients calculated in backprop
 
 print("Done")

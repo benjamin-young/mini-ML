@@ -16,8 +16,6 @@ class NeuralNetwork:
     def backward(self, grad):
         layer1Grad = self.layer1.backward(grad)
         
-
-    # add the following to your NeuralNetwork class
     def parameters(self):
         return [self.layer1.weights, self.layer1.biases]
 
@@ -32,11 +30,7 @@ inputs = np.random.uniform(-10, 10, size=(1000, 1))
 targets = 2 * inputs + 1 + np.random.normal(scale=0.5, size=(1000, 1))
 dataset = list(zip(inputs, targets)) # makes iterateable 
 
-# Now, train your model on this data
-# (Assuming your model is named `model` and your optimizer is named `optimizer`)
-
-for epoch in range(200):  # 100 epochs
-    #print(epoch)
+for epoch in range(200):  
     for input, target in dataset:               # dataset is an iterable of (input, target) pairs
         input =  input.reshape(-1, 1).T
         target = target.reshape(-1, 1).T
@@ -45,7 +39,6 @@ for epoch in range(200):  # 100 epochs
         prediction = nn.forward(inputTensor)    # performs a forward pass on the neural network
         loss = mse.forward(prediction, target)  # calculates loss on the prediction using MSE function
         gradient = mse.backward()               # calculates gradient by performing backprop - input is the gradient of the loss func
-        #print(prediction.creator_op + " " + str(prediction.creators))
         nn.backward(gradient)                   # performs backprop on neural network - input is the gradient of the loss wrt the networks output (descending to low loss)
         sgd.step()                              # updates the network parameters using the gradients calculated in backprop
 

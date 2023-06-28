@@ -4,7 +4,7 @@ class Tensor:
     def __init__(self, values, creators = None, creator_op = None):
         self.values = values
         self.grads = None
-        self.creators = creators #the two tensors that made this tensor
+        self.creators = creators #the tensors that made this tensor
         self.creator_op = creator_op
     
     def __add__(self, other):
@@ -28,8 +28,6 @@ class Tensor:
             return self.__class__(result,creators=[self, other], creator_op="mul")
         if isinstance(other, self.__class__):
             try:
-                #print("self shape: " + str(self.shape()))
-                #print("other shape: " + str(other.shape()))
                 return self.__class__(np.matmul(self.values, other.values), creators=[self,other], creator_op="mul")
             except ValueError:
                 print("shapes are not aligned for matrix multiplication") 
@@ -139,11 +137,9 @@ class Linear():
 
     def forward(self, input):
         self.input = input
-        #print(self.weights)
         return input * self.weights + self.biases
 
     def backward(self, grad):
-        #print(grad.values)
         self.weights.backward(self.input.T().values * grad)
         self.biases.backward(grad)
         return grad @ self.weights.values.T
